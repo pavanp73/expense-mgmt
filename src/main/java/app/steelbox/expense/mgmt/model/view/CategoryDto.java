@@ -3,20 +3,19 @@ package app.steelbox.expense.mgmt.model.view;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
-import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDto implements Serializable {
 
-    private int id;
+    private Long id;
     private String name;
-    private String type;
+    private String categoryType;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,11 +27,11 @@ public class CategoryDto implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getCategoryType() {
+        return categoryType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
     }
 }

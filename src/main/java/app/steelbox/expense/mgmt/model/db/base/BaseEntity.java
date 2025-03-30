@@ -7,7 +7,7 @@ import jakarta.persistence.PrePersist;
 import java.time.Instant;
 
 @MappedSuperclass
-public class BaseEntity<T extends BaseEntity, L extends Number> {
+public class BaseEntity {
 
     @Column(name = "created_ts", nullable = false)
     private Long createdTS;

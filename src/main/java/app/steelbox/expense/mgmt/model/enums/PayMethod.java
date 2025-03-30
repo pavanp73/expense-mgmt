@@ -4,8 +4,8 @@ public enum PayMethod {
 
     DEBIT_CARD("Debit Card"),
     CREDIT_CARD("Credit Card"),
-    PHONEPE("PhonePe"),
-    AMAZONPAY("AmazonPay"),
+    PHONE_PE("PhonePe"),
+    AMAZON_PAY("AmazonPay"),
     CRED("Cred"),
     INTERNET_BANKING("Internet_Banking"),
     CASH("Cash");

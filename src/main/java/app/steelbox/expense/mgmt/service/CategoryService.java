@@ -2,14 +2,13 @@ package app.steelbox.expense.mgmt.service;
 
 import app.steelbox.expense.mgmt.model.db.Category;
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
-import app.steelbox.expense.mgmt.model.enums.Type;
+import app.steelbox.expense.mgmt.model.enums.TransactionType;
 import app.steelbox.expense.mgmt.model.view.CategoryDto;
 import app.steelbox.expense.mgmt.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -27,7 +26,7 @@ public class CategoryService {
     public Category addCategory(CategoryDto categoryDto) {
 
         // for now, it's always EXPENSE type
-        TypeLookup typeLookup = typeLookupService.findByType(Type.EXPENSE.getType());
+        TypeLookup typeLookup = typeLookupService.findByType(TransactionType.EXPENSE.getType());
         final Category category = new Category();
         category.setName(categoryDto.getName());
         category.setTypeLookup(typeLookup);
@@ -46,7 +45,7 @@ public class CategoryService {
         CategoryDto categoryDto = new CategoryDto();
         categoryDto.setId(category.getId());
         categoryDto.setName(category.getName());
-        categoryDto.setType(category.getTypeLookup().getType());
+        categoryDto.setCategoryType(category.getTypeLookup().getType());
         return categoryDto;
     }
 

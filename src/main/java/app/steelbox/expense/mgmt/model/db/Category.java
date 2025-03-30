@@ -8,11 +8,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "exp_category")
-public class Category extends BaseEntity<BaseEntity, Number> {
+public class Category extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
@@ -21,11 +21,11 @@ public class Category extends BaseEntity<BaseEntity, Number> {
     @JoinColumn(name = "type_id", nullable = false)
     private TypeLookup typeLookup;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

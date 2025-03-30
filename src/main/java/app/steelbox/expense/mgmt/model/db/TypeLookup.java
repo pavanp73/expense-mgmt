@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "exp_type_lookup")
-public class TypeLookup extends BaseEntity<BaseEntity, Number> {
+public class TypeLookup extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

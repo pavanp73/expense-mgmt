@@ -4,7 +4,7 @@ public class TransactionDto {
 
     private long id;
     private String category;
-    private String type;
+    private String transactionType;
     private double amount;
     private long transactionTime;
     private String paymentMethod;
@@ -26,12 +26,12 @@ public class TransactionDto {
         this.category = category;
     }
 
-    public String getType() {
-        return type;
+    public String getTransactionType() {
+        return transactionType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     public double getAmount() {

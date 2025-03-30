@@ -8,10 +8,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TypeLookupServiceTest {
 
@@ -33,8 +35,8 @@ public class TypeLookupServiceTest {
 
         List<TypeLookup> result = typeLookupService.fetchAll();
 
-        Assert.notNull(result, "result is null");
-        Assert.isTrue(result.size() == 2, "result size is incorrect");
+        assertNotNull(result);
+        assertEquals(typeList.size(), result.size());
     }
 
     @Test
@@ -43,8 +45,9 @@ public class TypeLookupServiceTest {
         Mockito.when(typeLookupRepository.findByType("Expense")).thenReturn(expenseType);
 
         TypeLookup result = typeLookupService.findByType("Expense");
-        Assert.notNull(result, "result is null");
-        Assert.isTrue(result.getType().equals(expenseType.getType()), "result type is incorrect");
+
+        assertNotNull(result);
+        assertEquals(result.getType(), expenseType.getType());
     }
 
     private TypeLookup createTypeLookup(String type) {

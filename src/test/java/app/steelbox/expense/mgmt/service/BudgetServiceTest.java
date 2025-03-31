@@ -91,6 +91,7 @@ public class BudgetServiceTest {
         assertEquals(result.getName(), budgetDto.getName());
         assertNotNull(result.getBudgetDetailDtoList());
         assertEquals(result.getBudgetDetailDtoList().size(), budgetDetailList.size());
+        assertNotNull(result.getBudgetDetailDtoList().stream().map(BudgetDetailDto::getId).toList());
     }
 
     private Budget mockBudget(BudgetDto budgetDto) {

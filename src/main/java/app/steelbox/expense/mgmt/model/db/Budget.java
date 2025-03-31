@@ -1,6 +1,7 @@
 package app.steelbox.expense.mgmt.model.db;
 
 import app.steelbox.expense.mgmt.model.db.base.BaseEntity;
+import app.steelbox.expense.mgmt.model.enums.BudgetType;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,8 +24,6 @@ public class Budget extends BaseEntity {
     @Column(nullable = false)
     private int year;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "budget_type_id", nullable = false)
     private BudgetType budgetType;
 
     public Long getId() {

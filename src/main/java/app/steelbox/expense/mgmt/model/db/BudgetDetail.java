@@ -4,8 +4,8 @@ import app.steelbox.expense.mgmt.model.db.base.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "exp_budget_details")
-public class BudgetDetails extends BaseEntity {
+@Table(name = "exp_budget_detail")
+public class BudgetDetail extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

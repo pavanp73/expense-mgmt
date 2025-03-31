@@ -101,6 +101,8 @@ public class BudgetServiceTest {
         budget.setMonth(budgetDto.getMonth());
         budget.setYear(budgetDto.getYear());
         budget.setBudgetAmount(budgetDto.getBudgetAmount());
+        budget.setCreatedTS(System.currentTimeMillis());
+        budget.setUpdatedTS(System.currentTimeMillis());
         return budget;
     }
 
@@ -114,6 +116,8 @@ public class BudgetServiceTest {
                     budgetDetail.setAmount(budgetDetailDto.getAmount());
                     budgetDetail.setId(new Random().nextLong());
                     budgetDetail.setCategory(category);
+                    budgetDetail.setCreatedTS(System.currentTimeMillis());
+                    budgetDetail.setUpdatedTS(System.currentTimeMillis());
                     return budgetDetail;
                 }).toList();
     }

@@ -98,7 +98,7 @@ public class BudgetServiceTest {
         Budget budget = new Budget();
         budget.setId(new Random().nextLong());
         budget.setName(budgetDto.getName());
-        budget.setBudgetType(budgetDto.getBudgetType());
+        budget.setBudgetType(budgetDto.getBudgetType().toString());
         budget.setMonth(budgetDto.getMonth());
         budget.setYear(budgetDto.getYear());
         budget.setBudgetAmount(budgetDto.getBudgetAmount());

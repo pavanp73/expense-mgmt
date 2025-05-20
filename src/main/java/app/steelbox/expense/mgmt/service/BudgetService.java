@@ -3,6 +3,7 @@ package app.steelbox.expense.mgmt.service;
 import app.steelbox.expense.mgmt.model.db.Budget;
 import app.steelbox.expense.mgmt.model.db.BudgetDetail;
 import app.steelbox.expense.mgmt.model.db.Category;
+import app.steelbox.expense.mgmt.model.enums.BudgetType;
 import app.steelbox.expense.mgmt.model.view.BudgetDetailDto;
 import app.steelbox.expense.mgmt.model.view.BudgetDto;
 import app.steelbox.expense.mgmt.repository.BudgetRepository;
@@ -46,7 +47,7 @@ public class BudgetService {
         budgetDto.setName(budget.getName());
         budgetDto.setMonth(budget.getMonth());
         budgetDto.setYear(budget.getYear());
-        budgetDto.setBudgetType(budget.getBudgetType());
+        budgetDto.setBudgetType(BudgetType.valueOf(budget.getBudgetType()));
         budgetDto.setBudgetAmount(budget.getBudgetAmount());
         if (budgetDetailList.isPresent()) {
             List<BudgetDetailDto> budgetDetailDtoList = budgetDetailList.get().stream()
@@ -70,7 +71,7 @@ public class BudgetService {
         budget.setName(budgetDto.getName());
         budget.setMonth(budgetDto.getMonth());
         budget.setYear(budgetDto.getYear());
-        budget.setBudgetType(budgetDto.getBudgetType());
+        budget.setBudgetType(budgetDto.getBudgetType().toString());
         budget.setBudgetAmount(budgetDto.getBudgetAmount());
         return budget;
     }

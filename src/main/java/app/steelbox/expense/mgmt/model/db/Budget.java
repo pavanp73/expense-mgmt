@@ -24,7 +24,8 @@ public class Budget extends BaseEntity {
     @Column(nullable = false)
     private int year;
 
-    private BudgetType budgetType;
+    @Column(nullable = false)
+    private String budgetType;
 
     public Long getId() {
         return id;
@@ -66,11 +67,11 @@ public class Budget extends BaseEntity {
         this.year = year;
     }
 
-    public BudgetType getBudgetType() {
+    public String getBudgetType() {
         return budgetType;
     }
 
-    public void setBudgetType(BudgetType budgetType) {
+    public void setBudgetType(String budgetType) {
         this.budgetType = budgetType;
     }
 }

@@ -23,18 +23,19 @@ public class CategoryService {
         this.typeLookupService = typeLookupService;
     }
 
-    public Category addCategory(CategoryDto categoryDto) {
-
-        // for now, it's always EXPENSE type
-        TypeLookup typeLookup = typeLookupService.findByType(TransactionType.EXPENSE.getType());
-        final Category category = new Category();
-        category.setName(categoryDto.getName());
-        category.setTypeLookup(typeLookup);
-        return categoryRepository.save(category);
+    public List<Category> addCategory(List<CategoryDto> categoryDtoList) {
+        List<Category> categories = categoryDtoList.stream().map(this::mapToEntity).toList();
+        return categoryRepository.saveAll(categories);
     }
 
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public Category addCategory(CategoryDto categoryDto) {
+        return categoryRepository.save(mapToEntity(categoryDto));
+    }
+
+    public List<CategoryDto> getAllCategories() {
+        return categoryRepository.findAll().stream()
+                .map(this::mapToDto)
+                .toList();
     }
 
     Category findCategoryByName(String name) {
@@ -47,6 +48,15 @@ public class CategoryService {
         categoryDto.setName(category.getName());
         categoryDto.setCategoryType(category.getTypeLookup().getType());
         return categoryDto;
+    }
+
+    private Category mapToEntity(CategoryDto categoryDto) {
+        // for now, it's always EXPENSE type
+        TypeLookup typeLookup = typeLookupService.findByType(TransactionType.EXPENSE.getType());
+        final Category category = new Category();
+        category.setName(categoryDto.getName());
+        category.setTypeLookup(typeLookup);
+        return category;
     }
 
 

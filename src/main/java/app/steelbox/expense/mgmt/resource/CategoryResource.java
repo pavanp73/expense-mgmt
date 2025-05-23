@@ -20,12 +20,12 @@ public class CategoryResource {
     }
 
     @PostMapping
-    public Category addCategory(@RequestBody CategoryDto categoryDto) {
-        return categoryService.addCategory(categoryDto);
+    public List<Category> addCategory(@RequestBody List<CategoryDto> categoryDtoList) {
+        return categoryService.addCategory(categoryDtoList);
     }
 
     @GetMapping
-    public List<Category> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
 }

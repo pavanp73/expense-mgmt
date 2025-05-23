@@ -1,12 +1,12 @@
 package app.steelbox.expense.mgmt.service;
 
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
+import app.steelbox.expense.mgmt.model.view.TypeLookupDto;
 import app.steelbox.expense.mgmt.repository.TypeLookupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TypeLookupService {
@@ -18,8 +18,14 @@ public class TypeLookupService {
         this.typeLookupRepository = typeLookupRepository;
     }
 
-    public List<TypeLookup> fetchAll() {
-        return typeLookupRepository.findAll();
+    public List<TypeLookupDto> fetchAll() {
+        return typeLookupRepository.findAll().stream()
+                .map(entity -> {
+                    TypeLookupDto typeLookupDto = new TypeLookupDto();
+                    typeLookupDto.setId(entity.getId());
+                    typeLookupDto.setType(entity.getType());
+                    return typeLookupDto;
+                }).toList();
     }
 
     public List<TypeLookup> createTypeLookup(List<String> typeLookupList) {
@@ -27,8 +33,8 @@ public class TypeLookupService {
                 typeLookupList.stream().map(lookup -> {
                     TypeLookup typeLookup = new TypeLookup();
                     typeLookup.setType(lookup);
-                    return typeLookup;})
-                .collect(Collectors.toList())
+                    return typeLookup;
+                }).toList()
         );
     }
 

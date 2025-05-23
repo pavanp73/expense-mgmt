@@ -1,6 +1,7 @@
 package app.steelbox.expense.mgmt.resource;
 
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
+import app.steelbox.expense.mgmt.model.view.TypeLookupDto;
 import app.steelbox.expense.mgmt.service.TypeLookupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class TypeLookupResource {
     }
 
     @GetMapping
-    public List<TypeLookup> fetchAll() {
+    public List<TypeLookupDto> fetchAll() {
         return typeLookupService.fetchAll();
     }
 

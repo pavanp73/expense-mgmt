@@ -1,6 +1,7 @@
 package app.steelbox.expense.mgmt.service;
 
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
+import app.steelbox.expense.mgmt.model.view.TypeLookupDto;
 import app.steelbox.expense.mgmt.repository.TypeLookupRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ public class TypeLookupServiceTest {
         List<TypeLookup> typeList = List.of(createTypeLookup("Expense"), createTypeLookup("Income"));
         Mockito.when(typeLookupRepository.findAll()).thenReturn(typeList);
 
-        List<TypeLookup> result = typeLookupService.fetchAll();
+        List<TypeLookupDto> result = typeLookupService.fetchAll();
 
         assertNotNull(result);
         assertEquals(typeList.size(), result.size());

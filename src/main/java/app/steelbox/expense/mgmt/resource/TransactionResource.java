@@ -24,12 +24,16 @@ public class TransactionResource {
     }
 
     @PostMapping
-    public Transaction addTransaction(@RequestBody TransactionDto transactionDto) {
-        return transactionService.addTransaction(transactionDto);
+    public TransactionDto addTransaction(@RequestBody TransactionDto transactionDto) {
+        try {
+            return transactionService.addTransaction(transactionDto);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @GetMapping
-    public List<Transaction> getAllTransactions() {
+    public List<TransactionDto> getAllTransactions() {
         return transactionService.getAllTransactions();
     }
 }

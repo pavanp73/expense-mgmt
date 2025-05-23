@@ -39,6 +39,7 @@ public class CategoryService {
     }
 
     Category findCategoryByName(String name) {
+        // Todo - add cache layer
         return categoryRepository.findByName(name);
     }
 

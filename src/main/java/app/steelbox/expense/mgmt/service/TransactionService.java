@@ -9,6 +9,8 @@ import app.steelbox.expense.mgmt.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -17,6 +19,8 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final TypeLookupService typeLookupService;
     private final CategoryService categoryService;
+
+    private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     @Autowired
     public TransactionService(TransactionRepository transactionRepository,
@@ -27,7 +31,7 @@ public class TransactionService {
         this.categoryService = categoryService;
     }
 
-    public Transaction addTransaction(TransactionDto transactionDto) {
+    public TransactionDto addTransaction(TransactionDto transactionDto) throws ParseException {
 
         // for now, it's always EXPENSE type
         TypeLookup typeLookup = typeLookupService.findByType(TransactionType.EXPENSE.getType());
@@ -37,13 +41,27 @@ public class TransactionService {
         transaction.setCategory(category);
         transaction.setAmount(transactionDto.getAmount());
         transaction.setTypeId(typeLookup);
-        transaction.setTimestamp(transactionDto.getTransactionTime());
+        transaction.setTimestamp(DATE_FORMAT.parse(transactionDto.getTransactionDate()).getTime());
         transaction.setDescription(transactionDto.getDescription());
 
-        return transactionRepository.save(transaction);
+        transaction = transactionRepository.save(transaction);
+        return mapToDto(transaction);
     }
 
-    public List<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
+    public List<TransactionDto> getAllTransactions() {
+        return transactionRepository.findAll().stream()
+                .map(this::mapToDto).toList();
+    }
+
+    private TransactionDto mapToDto(Transaction transaction) {
+        TransactionDto transactionDto = new TransactionDto();
+        transactionDto.setId(transaction.getId());
+        transactionDto.setTransactionDate(DATE_FORMAT.format(transaction.getTimestamp()));
+        transactionDto.setDescription(transaction.getDescription());
+        transactionDto.setAmount(transaction.getAmount());
+        transactionDto.setCategory(transaction.getCategory().getName());
+        transactionDto.setTransactionType(transaction.getCategory().getTypeLookup().getType());
+        transactionDto.setPaymentMethod(transactionDto.getPaymentMethod());
+        return transactionDto;
     }
 }

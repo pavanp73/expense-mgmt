@@ -1,12 +1,15 @@
 package app.steelbox.expense.mgmt.model.view;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TransactionDto {
 
     private long id;
     private String category;
     private String transactionType;
     private double amount;
-    private long transactionTime;
+    private String transactionDate;
     private String paymentMethod;
     private String description;
 
@@ -42,12 +45,12 @@ public class TransactionDto {
         this.amount = amount;
     }
 
-    public long getTransactionTime() {
-        return transactionTime;
+    public String getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setTransactionTime(long transactionTime) {
-        this.transactionTime = transactionTime;
+    public void setTransactionDate(String transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     public String getPaymentMethod() {

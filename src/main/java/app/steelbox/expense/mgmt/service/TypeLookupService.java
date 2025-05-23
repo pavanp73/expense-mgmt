@@ -39,6 +39,7 @@ public class TypeLookupService {
     }
 
     public TypeLookup findByType(String type) {
+        // Todo - add cache layer
         return typeLookupRepository.findByType(type);
     }
 }

@@ -2,7 +2,7 @@ package app.steelbox.expense.mgmt.service;
 
 import app.steelbox.expense.mgmt.model.db.Category;
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
-import app.steelbox.expense.mgmt.model.enums.TransactionType;
+import app.steelbox.expense.mgmt.model.shared.TransactionType;
 import app.steelbox.expense.mgmt.model.view.CategoryDto;
 import app.steelbox.expense.mgmt.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

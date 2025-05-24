@@ -1,6 +1,6 @@
 package app.steelbox.expense.mgmt.model.view;
 
-import app.steelbox.expense.mgmt.model.enums.BudgetType;
+import app.steelbox.expense.mgmt.model.shared.BudgetType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package app.steelbox.expense.mgmt.service;
 import app.steelbox.expense.mgmt.model.db.Category;
 import app.steelbox.expense.mgmt.model.db.Transaction;
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
-import app.steelbox.expense.mgmt.model.enums.TransactionType;
+import app.steelbox.expense.mgmt.model.shared.TransactionType;
 import app.steelbox.expense.mgmt.model.shared.DateRange;
 import app.steelbox.expense.mgmt.model.view.TransactionDto;
 import app.steelbox.expense.mgmt.repository.TransactionRepository;

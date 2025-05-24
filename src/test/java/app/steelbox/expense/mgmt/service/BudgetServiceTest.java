@@ -3,7 +3,7 @@ package app.steelbox.expense.mgmt.service;
 import app.steelbox.expense.mgmt.model.db.Budget;
 import app.steelbox.expense.mgmt.model.db.BudgetDetail;
 import app.steelbox.expense.mgmt.model.db.Category;
-import app.steelbox.expense.mgmt.model.enums.BudgetType;
+import app.steelbox.expense.mgmt.model.shared.BudgetType;
 import app.steelbox.expense.mgmt.model.view.BudgetDetailDto;
 import app.steelbox.expense.mgmt.model.view.BudgetDto;
 import app.steelbox.expense.mgmt.repository.BudgetRepository;

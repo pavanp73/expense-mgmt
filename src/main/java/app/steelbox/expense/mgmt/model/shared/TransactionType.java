@@ -1,4 +1,4 @@
-package app.steelbox.expense.mgmt.model.enums;
+package app.steelbox.expense.mgmt.model.shared;
 
 public enum TransactionType {
 

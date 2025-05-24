@@ -1,7 +1,6 @@
 package app.steelbox.expense.mgmt.model.db;
 
 import app.steelbox.expense.mgmt.model.db.base.BaseEntity;
-import app.steelbox.expense.mgmt.model.enums.BudgetType;
 import jakarta.persistence.*;
 
 @Entity

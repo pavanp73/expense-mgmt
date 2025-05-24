@@ -4,6 +4,7 @@ import app.steelbox.expense.mgmt.model.db.Category;
 import app.steelbox.expense.mgmt.model.db.Transaction;
 import app.steelbox.expense.mgmt.model.db.TypeLookup;
 import app.steelbox.expense.mgmt.model.enums.TransactionType;
+import app.steelbox.expense.mgmt.model.shared.DateRange;
 import app.steelbox.expense.mgmt.model.view.TransactionDto;
 import app.steelbox.expense.mgmt.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class TransactionService {
     public List<TransactionDto> getAllTransactions() {
         return transactionRepository.findAll().stream()
                 .map(this::mapToDto).toList();
+    }
+
+    List<TransactionDto> getTransactionsForAMonth(DateRange dateRange) {
+        List<Transaction> transactionsForMonth = transactionRepository
+                .findByTimestampBetween(dateRange.getStartDate(), dateRange.getEndDate());
+        return transactionsForMonth.stream().map(this::mapToDto).toList();
     }
 
     private TransactionDto mapToDto(Transaction transaction) {

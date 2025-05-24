@@ -4,14 +4,14 @@ import app.steelbox.expense.mgmt.model.shared.DateRange;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.OffsetDateTime;
+import java.time.ZoneId;
 
 public class DateUtil {
 
     public static DateRange getDateRange(String month, Integer year) {
         LocalDateTime start;
         LocalDateTime end;
-        start = LocalDateTime.of(getYearValue(year), Month.valueOf(getMonthValue(month)), 1, 0, 0);
+        start = LocalDateTime.of(getYearValue(year), Month.valueOf(getMonthValue(month)), 1, 0, 0, 0);
         end = start.withDayOfMonth(start.toLocalDate().lengthOfMonth());
         return new DateRange(getEpochSeconds(start)-1L, getEpochSeconds(end)+1L);
     }
@@ -28,6 +28,6 @@ public class DateUtil {
     }
 
     private static Long getEpochSeconds(LocalDateTime localDateTime) {
-        return localDateTime.toEpochSecond(OffsetDateTime.now().getOffset());
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

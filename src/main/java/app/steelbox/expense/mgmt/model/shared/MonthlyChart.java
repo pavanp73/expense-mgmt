@@ -8,7 +8,7 @@ public class MonthlyChart implements Serializable {
     private Double total;
     private List<ChartData> categoryWiseData;
     private String month;
-    private Integer year;
+    private String year;
 
     public Double getTotal() {
         return total;
@@ -34,11 +34,11 @@ public class MonthlyChart implements Serializable {
         this.month = month;
     }
 
-    public Integer getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(String year) {
         this.year = year;
     }
 }

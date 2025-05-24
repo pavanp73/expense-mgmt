@@ -21,8 +21,8 @@ public class ChartResource {
 
     @GetMapping
     public MonthlyChart getMonthlyChart(
-            @RequestParam Integer year,
-            @RequestParam String month) {
+            @RequestParam(value = "year", required = false) String year,
+            @RequestParam(value = "month", required = false) String month) {
         return chartService.getMonthlyChart(month, year);
     }
 }

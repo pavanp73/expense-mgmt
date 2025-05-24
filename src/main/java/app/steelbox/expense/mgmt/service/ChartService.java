@@ -22,12 +22,12 @@ public class ChartService {
         this.transactionService = transactionService;
     }
 
-    public MonthlyChart getMonthlyChart(String month, int year) {
+    public MonthlyChart getMonthlyChart(String month, String year) {
         DateRange dateRange = DateUtil.getDateRange(month, year);
         List<TransactionDto> transactionDtoList = transactionService.getTransactionsForAMonth(dateRange);
         MonthlyChart monthlyChart = new MonthlyChart();
-        monthlyChart.setMonth(month);
-        monthlyChart.setYear(year);
+        monthlyChart.setMonth(dateRange.getMonth());
+        monthlyChart.setYear(String.valueOf(dateRange.getYear()));
 
         Map<String, ChartData> chartDataMap = transactionDtoList.stream()
                 .collect(Collectors.toMap(

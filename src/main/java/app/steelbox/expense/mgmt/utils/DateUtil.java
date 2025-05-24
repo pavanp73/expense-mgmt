@@ -8,12 +8,16 @@ import java.time.ZoneId;
 
 public class DateUtil {
 
-    public static DateRange getDateRange(String month, Integer year) {
+    public static DateRange getDateRange(String month, String year) {
+        return getDateRange(getMonthValue(month), getYearValue(year));
+    }
+
+    private static DateRange getDateRange(String month, int year) {
         LocalDateTime start;
         LocalDateTime end;
-        start = LocalDateTime.of(getYearValue(year), Month.valueOf(getMonthValue(month)), 1, 0, 0, 0);
+        start = LocalDateTime.of(year, Month.valueOf(month), 1, 0, 0, 0);
         end = start.withDayOfMonth(start.toLocalDate().lengthOfMonth());
-        return new DateRange(getEpochSeconds(start)-1L, getEpochSeconds(end)+1L);
+        return new DateRange(getEpochSeconds(start)-1L, getEpochSeconds(end)+1L, month, year);
     }
 
     private static String getMonthValue(String month) {
@@ -22,8 +26,8 @@ public class DateUtil {
                 LocalDateTime.now().getMonth().name();
     }
 
-    private static int getYearValue(Integer year) {
-        return (year != null) ? year :
+    private static int getYearValue(String year) {
+        return (year != null) ? Integer.parseInt(year) :
                 LocalDateTime.now().getYear();
     }
 

@@ -21,7 +21,7 @@ public class TransactionService {
     private final TypeLookupService typeLookupService;
     private final CategoryService categoryService;
 
-    private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     public TransactionService(TransactionRepository transactionRepository,

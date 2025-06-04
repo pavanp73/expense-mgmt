@@ -7,6 +7,7 @@ import app.steelbox.expense.mgmt.model.shared.TransactionType;
 import app.steelbox.expense.mgmt.model.shared.DateRange;
 import app.steelbox.expense.mgmt.model.view.TransactionDto;
 import app.steelbox.expense.mgmt.repository.TransactionRepository;
+import app.steelbox.expense.mgmt.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,9 +50,9 @@ public class TransactionService {
         return mapToDto(transaction);
     }
 
-    public List<TransactionDto> getAllTransactions() {
-        return transactionRepository.findAll().stream()
-                .map(this::mapToDto).toList();
+    public List<TransactionDto> getAllTransactions(String month, String year) {
+        DateRange dateRange = DateUtil.getDateRange(month, year);
+        return getTransactionsForAMonth(dateRange);
     }
 
     List<TransactionDto> getTransactionsForAMonth(DateRange dateRange) {

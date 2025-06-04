@@ -1,6 +1,5 @@
 package app.steelbox.expense.mgmt.resource;
 
-import app.steelbox.expense.mgmt.model.db.Transaction;
 import app.steelbox.expense.mgmt.model.view.TransactionDto;
 import app.steelbox.expense.mgmt.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -33,7 +33,10 @@ public class TransactionResource {
     }
 
     @GetMapping
-    public List<TransactionDto> getAllTransactions() {
-        return transactionService.getAllTransactions();
+    public List<TransactionDto> getAllTransactions(
+            @RequestParam(value = "year", required = false) String year,
+            @RequestParam(value = "month", required = false) String month
+    ) {
+        return transactionService.getAllTransactions(month, year);
     }
 }
